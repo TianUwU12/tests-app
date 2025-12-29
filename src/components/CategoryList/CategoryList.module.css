@@ -1,0 +1,14 @@
+.link {
+  background-color: rgb(200, 205, 205);
+  border-radius: 15px;
+  border: 1.5px solid rgb(176, 170, 165);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+  padding: 10px 25px;
+  margin-bottom: 5px;
+}
+.link:hover {
+  background-color: rgb(148, 154, 154);
+}

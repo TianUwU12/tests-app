@@ -1,0 +1,12 @@
+.carousel {
+  max-height: 300px;
+  display: flex;
+}
+.carousel > div {
+  width: 50%;
+}
+.image {
+  object-fit: contain;
+  max-height: 100%;
+  max-width: 100%;
+}
