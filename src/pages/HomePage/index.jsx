@@ -3,18 +3,17 @@ import LetterComponent from "../../components/LetterComponent";
 import { Switch } from "antd";
 import MainCarousel from "../../components/MainCarousel";
 import FormTestConstructor from "../../components/FormTestConstructor";
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "../../store/slices/counterSlice";
+
 export default function HomePage() {
-  // let counter = 0;
-  const [counter, setCounter] = useState(0); //[0,fn]
-  const [num, setNum] = useState(0);
-  const [word, setWord] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [containWord, setContainWord] = useState("");
-  const [hasWinner, setHasWinner] = useState(false);
-  const [showGame, setShowGame] = useState(false);
-  
+  const { value } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+  console.log(value);
+
   return (
     <div>
+      <button onClick={() => dispatch(increment())}>+1</button>
       <MainCarousel />
       <FormTestConstructor />
     </div>

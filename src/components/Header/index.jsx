@@ -3,17 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { Menu, Drawer } from "antd";
 import { menuItems } from "./menuItems";
 
-import {
-  MenuOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 
 import styles from "./Header.module.css";
-import './HeaderCommon.css'
+import "./HeaderCommon.css";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [isDrawerVisible, setDrawerVisible] = useState(false);
+  const { value } = useSelector((state) => state.counter);
 
-  
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -34,10 +33,12 @@ const Header = () => {
 
   return (
     <>
-      
       <div className={styles["menu-desktop"]}>
-        <Link to={"/"}><img alt="logo" src="./images/examPic.png" className={styles.logo}/></Link>
-        <Menu 
+        <h1>{value}</h1>
+        <Link to={"/"}>
+          <img alt="logo" src="./images/examPic.png" className={styles.logo} />
+        </Link>
+        <Menu
           onClick={handleClick}
           selectedKeys={[current]}
           mode="horizontal"
@@ -45,7 +46,7 @@ const Header = () => {
           className={styles.navbar}
         />
       </div>
-      <div className={styles["menu-mobile"]}> 
+      <div className={styles["menu-mobile"]}>
         <MenuOutlined onClick={showDrawer} />
         <Drawer
           title="Menu"
@@ -53,14 +54,12 @@ const Header = () => {
           closable={true}
           onClose={closeDrawer}
           open={isDrawerVisible}
-          
         >
           <Menu
             onClick={handleClick}
             selectedKeys={[current]}
             items={menuItems}
             mode="vertical"
-            
           />
         </Drawer>
         <button>Close menu</button>
