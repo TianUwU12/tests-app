@@ -4,6 +4,7 @@ import { categoryQuestions, customTest } from "../../data/questions";
 import Question from "../../components/Question";
 import { Modal } from "antd";
 import { shuffleArray } from "../../utils";
+import { useSelector } from "react-redux";
 
 const getCategory = (id) => {
   if (id === "custom") return customTest;
@@ -16,17 +17,22 @@ export default function CategoryPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  const customTest = useSelector((state) => state.customTest);
 
   const { grade, percent } = results;
   const category = getCategory(id);
+
+  console.log(customTest);
+  console.log(category);
+  console.log(id);
 
   if (!category) {
     return <p>Категория не найдена</p>;
   }
 
   if (id === "custom" && category.tasks.length === 0) {
-    const tasks = JSON.parse(localStorage.getItem("customTest")) || [];
-    category.tasks = shuffleArray(tasks);
+    console.log(customTest);
+    category.tasks = shuffleArray(customTest);
   }
 
   useEffect(() => {

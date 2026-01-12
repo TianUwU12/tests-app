@@ -1,21 +1,17 @@
 import styles from "./QuestionLevel.module.css";
 
 const levels = {
-  easy: "Legkiy",
-  middle: "Sredniy",
-  hard: "Tyzheliy",
-  extreme: "Ekstremalniy",
-  insane: "Sovsem Beda",
+  easy: "Лёгкий",
+  middle: "Средний",
+  hard: "Сложный",
 };
 const levelColors = {
-  easy: { bgColor: "rgb(80, 194, 87)", borderColor: "rgb(55, 165, 62)" },
+  easy: { bgColor: "rgba(80, 194, 88, 0.64)", borderColor: "rgb(55, 165, 62)" },
   middle: {
-    bgColor: "rgb(199, 161, 45)",
+    bgColor: "rgba(199, 160, 45, 0.7)",
     borderColor: "rgba(156, 126, 36, 1)",
   },
-  hard: { bgColor: "rgb(80, 194, 87)", borderColor: "rgb(55, 165, 62)" },
-  extreme: { bgColor: "rgb(80, 194, 87)", borderColor: "rgb(55, 165, 62)" },
-  insane: { bgColor: "rgb(80, 194, 87)", borderColor: "rgb(55, 165, 62)" },
+  hard: { bgColor: "rgba(194, 80, 80, 0.72)", borderColor: "rgba(165, 55, 55, 1)" },
 };
 
 const getLvlColors = (lvl) => levelColors[lvl];

@@ -1,7 +1,7 @@
 .link {
-  background-color: rgb(200, 205, 205);
+  background-color: rgba(135, 203, 148,0.37);
   border-radius: 15px;
-  border: 1.5px solid rgb(176, 170, 165);
+  border: 1.5px solid green;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,5 +10,5 @@
   margin-bottom: 5px;
 }
 .link:hover {
-  background-color: rgb(148, 154, 154);
+  background-color: rgba(100, 165, 96, 0.699);
 }

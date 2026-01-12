@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { categoryQuestions } from "../../data/questions";
 import FormTestConstructorItem from "./FormTestConstructorItem";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCustomTest } from "../../store/slices/customTestSlice";
 
 export default function FormTestConstructor() {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function changeFormData(id, value) {
     const copyData = { ...formData };
@@ -33,8 +36,9 @@ export default function FormTestConstructor() {
 
     console.log(questions);
 
-    localStorage.setItem("customTest", JSON.stringify(questions));
+    // localStorage.setItem("customTest", JSON.stringify(questions)); // в редакс тулкит слайс
 
+    dispatch(setCustomTest(questions));
     navigate("/catalog/custom");
     //navigate('kuda to')
   }

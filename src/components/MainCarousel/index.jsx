@@ -20,7 +20,7 @@ export default function MainCarousel() {
             <h2>{item.title}</h2>
             <p>{item.text}</p>
           </div>
-          <div>
+          <div className={styles.div}>
             <img alt={item.title} src={item.image} className={styles.image} />
           </div>
         </div>

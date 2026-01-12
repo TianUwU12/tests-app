@@ -6,7 +6,12 @@
   width: 50%;
 }
 .image {
-  object-fit: contain;
   max-height: 100%;
   max-width: 100%;
+  object-fit: contain;
+  
+}
+.div{
+  display: flex;
+  justify-content: center;
 }

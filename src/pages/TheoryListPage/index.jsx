@@ -6,7 +6,7 @@ export default function TheoryListPage() {
   return (
     <>
       <h1>Теория ОГЭ</h1>
-      <div className="d-flex flex-direction-column">
+      <div className="d-flex flex-direction-column" >
         {categoryQuestions.map(({id,title}) => (
           <Link key={id} to={`/theory/${id}`}>
             {title}

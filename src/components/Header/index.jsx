@@ -8,10 +8,11 @@ import { MenuOutlined } from "@ant-design/icons";
 import styles from "./Header.module.css";
 import "./HeaderCommon.css";
 import { useSelector } from "react-redux";
+
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [isDrawerVisible, setDrawerVisible] = useState(false);
-  const { value } = useSelector((state) => state.counter);
+  const customTest = useSelector((state) => state.customTest);
 
   const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ const Header = () => {
   return (
     <>
       <div className={styles["menu-desktop"]}>
-        <h1>{value}</h1>
+        <button onClick={() => console.log(customTest)}>KILL ME</button>
         <Link to={"/"}>
           <img alt="logo" src="./images/examPic.png" className={styles.logo} />
         </Link>

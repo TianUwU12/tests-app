@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FinalUserAnswer from "../FinalUserAnswer";
 import styles from "./Question.module.css";
+import AdditionalInfoQuestion from "../AdditionalInfoQuestion";
 
 export default function Question({
   question,
@@ -8,14 +9,9 @@ export default function Question({
   grade,
   index,
   setAnswerByIndex,
+  additionalInfo,
 }) {
   const [userAnswer, setUserAnswer] = useState("");
-
-  // useEffect(() => {
-  //   if (grade === null) {
-  //     setUserAnswer("");
-  //   }
-  // }, [grade]);
 
   function changeUserAnswer(event) {
     console.log(event);
@@ -24,10 +20,19 @@ export default function Question({
     setAnswerByIndex(index, value);
   }
 
+  const isFinished = grade !== null;
+  const bgColor = isFinished
+    ? userAnswer === correctAnswer
+      ? "green"
+      : "red"
+    : "transparent";
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} style={{ backgroundColor: bgColor }}>
       <p>{question}</p>
-      {userAnswer}
+      {additionalInfo && (
+        <AdditionalInfoQuestion additionalInfo={additionalInfo} />
+      )}
       <input
         value={userAnswer}
         disabled={grade === null ? false : true}
@@ -40,7 +45,7 @@ export default function Question({
           }
         }}
       />
-      {grade !== null && (
+      {isFinished && (
         <FinalUserAnswer
           userAnswer={userAnswer}
           correctAnswer={correctAnswer}

@@ -4,16 +4,18 @@ import { Switch } from "antd";
 import MainCarousel from "../../components/MainCarousel";
 import FormTestConstructor from "../../components/FormTestConstructor";
 import { useDispatch, useSelector } from "react-redux";
-import { increment } from "../../store/slices/counterSlice";
+import { increment, addNum } from "../../store/slices/counterSlice";
 
 export default function HomePage() {
   const { value } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
+  const randNumber = Math.round(Math.random() * 1000);
   console.log(value);
 
   return (
     <div>
-      <button onClick={() => dispatch(increment())}>+1</button>
+      <button onClick={() => dispatch(addNum(randNumber))}>+1</button>
+      <h1>{randNumber}</h1>
       <MainCarousel />
       <FormTestConstructor />
     </div>

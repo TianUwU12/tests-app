@@ -18,7 +18,7 @@ export default function CategoryList() {
             <span>
               {category.title} <QuestionLevel level={category.level} />
             </span>{" "}
-            <span>Kolichestvo voprosov {category.tasks.length}</span>
+            <span>Количество вопросов: {category.tasks.length}</span>
           </Link>
         ))}
       </div>

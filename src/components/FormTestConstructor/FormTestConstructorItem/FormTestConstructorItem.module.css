@@ -1,0 +1,13 @@
+.button{
+    background-color: rgba(122, 243, 98, 0.329);
+    margin: 5px 5px 5px 5px;
+
+}
+.button:hover{
+    border-color: green;
+    
+}
+.button:active{
+    border: none;
+    
+}

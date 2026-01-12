@@ -19,3 +19,11 @@ function getRandomItems(arr, n) {
 }
 
 console.log(getRandomItems(arr, 3));
+const dog = {
+  title: "Bobik",
+  age: 5,
+  bark: (username) => console.log("woof woof " + username),
+};
+// console.log(...dog);
+
+dog.bark("Mark");
