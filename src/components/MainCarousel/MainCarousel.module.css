@@ -1,6 +1,7 @@
 .carousel {
   max-height: 300px;
   display: flex;
+  margin-top: 80px;
 }
 .carousel > div {
   width: 50%;

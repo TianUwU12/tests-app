@@ -14,45 +14,28 @@ export default function FormTestConstructor() {
     const copyData = { ...formData };
 
     copyData[id] = (copyData[id] || 0) + value;
-    console.log(copyData);
     setFormData(copyData);
   }
 
   function getRandomItems(key, n) {
-    console.log(key);
-
     const category = categoryQuestions.find((cat) => cat.id === key);
-    console.log(category);
 
     return [...category.tasks].sort(() => Math.random() - 0.5).slice(0, n);
   }
 
   function startTest() {
     const categories = Object.entries(formData);
-    console.log(categories);
     const questions = categories
       .map(([key, value]) => getRandomItems(key, value))
       .flat();
 
-    console.log(questions);
-
-    // localStorage.setItem("customTest", JSON.stringify(questions)); // в редакс тулкит слайс
-
     dispatch(setCustomTest(questions));
     navigate("/catalog/custom");
-    //navigate('kuda to')
   }
-
-  //   let a = "a";
-  //   let b = "b";
-  //   let c = "c";
-
-  //   console.log(b + a + +c + a);
 
   const checkBtnDisabled = () => {
     const values = Object.values(formData);
     if (!values.length) return true;
-    console.log(values);
     const isZeroValues = values.every((item) => item === 0);
 
     return isZeroValues;
@@ -71,14 +54,6 @@ export default function FormTestConstructor() {
       ))}
       <button disabled={checkBtnDisabled()} onClick={startTest}>
         ok
-      </button>
-      <button
-        onClick={() => {
-          console.log(formData);
-          checkBtnDisabled();
-        }}
-      >
-        log
       </button>
     </div>
   );

@@ -12,6 +12,7 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import CustomTestPage from "./pages/CustomTestPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route path="/rating" element={<RatingPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/catalog/:id" element={<CategoryPage />} />
-        <Route path="/custom-test" element={<CustomTestPage/>}/>
+        <Route path="/custom-test" element={<CustomTestPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <ScrollToTopButton />

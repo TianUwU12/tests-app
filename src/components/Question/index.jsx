@@ -23,13 +23,22 @@ export default function Question({
   const isFinished = grade !== null;
   const bgColor = isFinished
     ? userAnswer === correctAnswer
-      ? "green"
-      : "red"
+      ? "rgba(80, 194, 88, 0.64)"
+      : "rgba(194, 80, 80, 0.72)"
     : "transparent";
+  const parts = question.split(/(\*\*.*?\*\*)/g);
 
   return (
     <div className={styles.card} style={{ backgroundColor: bgColor }}>
-      <p>{question}</p>
+      <p className={styles.text}>
+        {parts.map((item, i) =>
+          item.startsWith("**") && item.endsWith("**") ? (
+            <strong key={i}>{item.slice(2, -2)}</strong>
+          ) : (
+            item
+          )
+        )}
+      </p>
       {additionalInfo && (
         <AdditionalInfoQuestion additionalInfo={additionalInfo} />
       )}
@@ -55,6 +64,4 @@ export default function Question({
   );
 }
 
-/// если пользователь ничего не ввел в поле нипута но нажал на клик
-// показываем ему что он ничего не ввел в финальном ответе
-// в модалке показывать количество правильных ответов . неправильных и не отвеченных
+

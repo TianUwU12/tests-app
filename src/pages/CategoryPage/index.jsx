@@ -24,7 +24,6 @@ export default function CategoryPage() {
 
   console.log(customTest);
   console.log(category);
-  console.log(id);
 
   if (!category) {
     return <p>Категория не найдена</p>;
@@ -36,6 +35,12 @@ export default function CategoryPage() {
   }
 
   useEffect(() => {
+    console.log("hello");
+
+    return () => (category.tasks = []);
+  }, []);
+
+  useEffect(() => {
     console.log("tasks");
     if (id === "custom" && category.tasks.length === 0) {
       navigate("/");
@@ -43,7 +48,7 @@ export default function CategoryPage() {
   }, [category.tasks]);
 
   const correctAnswers = category.tasks.map(
-    (question) => question.correctAnswer
+    (question) => question.correctAnswer,
   );
 
   const [countAnswers, setCountAnswers] = useState({
@@ -88,7 +93,7 @@ export default function CategoryPage() {
   function changeCountAnswers(
     countCorrectAnswers,
     countWrongAnswers,
-    countEmptyAnswers
+    countEmptyAnswers,
   ) {
     setCountAnswers({
       countCorrectAnswers,
@@ -139,7 +144,7 @@ export default function CategoryPage() {
     changeCountAnswers(
       countCorrectAnswers,
       countWrongAnswers,
-      countEmptyAnswers
+      countEmptyAnswers,
     );
     showModal();
   }
@@ -152,9 +157,6 @@ export default function CategoryPage() {
     <div>
       <h3>{category.title}</h3>
       {/* <h4>Вопросов - {category.tasks}</h4> */}
-      <button onClick={showModal}>click</button>
-      <button onClick={resetGrade}>reset</button>
-      {id !== "custom" && <button onClick={navigateToTheory}>Theory</button>}
 
       {category.tasks.map((question, index) => (
         <Question
@@ -165,7 +167,9 @@ export default function CategoryPage() {
           grade={grade}
         />
       ))}
-
+      <button onClick={showModal}>click</button>
+      <button onClick={resetGrade}>reset</button>
+      {id !== "custom" && <button onClick={navigateToTheory}>Theory</button>}
       <Modal
         title="Basic Modal"
         closable={{ "aria-label": "Custom Close Button" }}

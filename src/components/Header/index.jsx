@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <>
       <div className={styles["menu-desktop"]}>
-        <button onClick={() => console.log(customTest)}>KILL ME</button>
+        
         <Link to={"/"}>
           <img alt="logo" src="./images/examPic.png" className={styles.logo} />
         </Link>

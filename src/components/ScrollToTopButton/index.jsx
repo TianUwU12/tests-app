@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./ScrollToTopButton.css";
-// Компонент кнопки "Подняться вверх"
-// Появляется после прокрутки страницы вниз на threshold пикселей
-// При нажатии плавно поднимает страницу вверх
+import { FaArrowUp } from "react-icons/fa";
 
 export default function ScrollToTopButton({
   threshold = 200, // после какого количества пикселей прокрутки показывать кнопку
   bottom = 24, // отступ кнопки снизу (px)
   right = 24, // отступ кнопки справа (px)
-  size = 44, // размер кнопки (ширина и высота)
   ariaLabel = "Подняться вверх",
 }) {
   const [visible, setVisible] = useState(false);
@@ -63,8 +60,7 @@ export default function ScrollToTopButton({
   const style = {
     bottom: `${bottom}px`,
     right: `${right}px`,
-    width: `${size}px`,
-    height: `${size}px`,
+
     opacity: visible ? 1 : 0,
   };
 
@@ -75,30 +71,8 @@ export default function ScrollToTopButton({
       onClick={handleClick}
       style={style}
       className="scroll-btn"
-
-      //   className={`
-      //     fixed z-50 flex items-center justify-center
-      //     rounded-full shadow-lg bg-white dark:bg-gray-800
-      //     transition-all duration-300
-      //     ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
-      //   `}
     >
-      {/* SVG иконка «стрелка вверх» */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width="60%"
-        height="60%"
-        fill="none"
-      >
-        <path
-          d="M6 15l6-6 6 6"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <FaArrowUp />
       <span>Up</span>
     </button>
   );

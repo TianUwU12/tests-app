@@ -1,4 +1,14 @@
 .scroll-btn {
   position: fixed;
-  background-color: red;
+  display: flex;
+  background-color: rgba(32, 175, 10, 0.562);
+  text-align: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.scroll-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 24px;
 }
