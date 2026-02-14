@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function InformationPage() {
-  return (
-    <div>InformationPage</div>
-  )
+  const favourites = useSelector((state) => state.favouriteSlice);
+  console.log(favourites);
+
+  return <div></div>;
 }
