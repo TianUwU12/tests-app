@@ -14,25 +14,28 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import CustomTestPage from "./pages/CustomTestPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addCategories } from "./store/slices/categoriesSlice";
 
 function App() {
+  const dispatch = useDispatch();
   async function getCategories() {
     try {
-      const response = await fetch('http://localhost:3000/api/tests/');
+      const response = await fetch("http://localhost:3000/api/tests/");
       const data = await response.json();
-      console.log("exexex");
-      
+      console.log(data);
+      dispatch(addCategories(data));
     } catch (error) {
-      
+      console.log(error);
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getCategories();
-  },[])
+  }, []);
+
   return (
     <div>
-      
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

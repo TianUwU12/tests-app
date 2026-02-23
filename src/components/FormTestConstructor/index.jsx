@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { categoryQuestions } from "../../data/questions";
+import React, { useEffect, useState } from "react";
 import FormTestConstructorItem from "./FormTestConstructorItem";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -7,8 +6,23 @@ import { setCustomTest } from "../../store/slices/customTestSlice";
 
 export default function FormTestConstructor() {
   const [formData, setFormData] = useState({});
+  const [categories, setCategories] = useState([]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/tests");
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   function changeFormData(id, value) {
     const copyData = { ...formData };
@@ -18,7 +32,7 @@ export default function FormTestConstructor() {
   }
 
   function getRandomItems(key, n) {
-    const category = categoryQuestions.find((cat) => cat.id === key);
+    const category = categories.find((cat) => cat.id === key);
 
     return [...category.tasks].sort(() => Math.random() - 0.5).slice(0, n);
   }
@@ -40,10 +54,11 @@ export default function FormTestConstructor() {
 
     return isZeroValues;
   };
+  console.log(categories);
 
   return (
     <div>
-      {categoryQuestions.map(({ id, title, tasks }) => (
+      {categories.map(({ id, title, tasks }) => (
         <FormTestConstructorItem
           key={id}
           title={title}

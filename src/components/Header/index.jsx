@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, Drawer } from "antd";
+import { Menu, Drawer, Modal } from "antd";
 import { menuItems } from "./menuItems";
 
 import { MenuOutlined } from "@ant-design/icons";
@@ -8,11 +8,24 @@ import { MenuOutlined } from "@ant-design/icons";
 import styles from "./Header.module.css";
 import "./HeaderCommon.css";
 import { useSelector } from "react-redux";
+import RegAuthSwitcher from "../RegAuthSwitcher";
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [isDrawerVisible, setDrawerVisible] = useState(false);
-  const customTest = useSelector((state) => state.customTest);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const navigate = useNavigate();
 
@@ -35,7 +48,6 @@ const Header = () => {
   return (
     <>
       <div className={styles["menu-desktop"]}>
-        
         <Link to={"/"}>
           <img alt="logo" src="./images/examPic.png" className={styles.logo} />
         </Link>
@@ -46,6 +58,7 @@ const Header = () => {
           items={menuItems}
           className={styles.navbar}
         />
+        <button onClick={showModal}>Login</button>
       </div>
       <div className={styles["menu-mobile"]}>
         <MenuOutlined onClick={showDrawer} />
@@ -65,6 +78,15 @@ const Header = () => {
         </Drawer>
         <button>Close menu</button>
       </div>
+      <Modal
+        title="Basic Modal"
+        closable={{ "aria-label": "Custom Close Button" }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <RegAuthSwitcher />
+      </Modal>
     </>
   );
 };
