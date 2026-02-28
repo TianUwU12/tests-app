@@ -30,7 +30,7 @@ export default function FormTestConstructorItem({
       <span>{count}</span>
       <button
         className={styles.button}
-        disabled={count >= tasks.length}
+        disabled={count >= tasks?.length}
         onClick={() => chCount(1)}
       >
         +

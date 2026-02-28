@@ -49,6 +49,8 @@ export default function FormTestConstructor() {
 
   const checkBtnDisabled = () => {
     const values = Object.values(formData);
+    console.log(values);
+    
     if (!values.length) return true;
     const isZeroValues = values.every((item) => item === 0);
 

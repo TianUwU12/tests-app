@@ -9,7 +9,7 @@ const RegisterForm = () => {
     try {
       const { confirm, ...registerData } = values;
 
-      const response = await fetch("https://api.example.com/register", {
+      const response = await fetch("http://localhost:3000/api/reg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registerData),
@@ -47,6 +47,14 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item
+        name="nickname"
+        label="Nickname"
+        rules={[{ required: true, message: "Введите nickname!" }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
         name="password"
         label="Пароль"
         rules={[{ required: true, message: "Введите пароль!" }]}
@@ -73,6 +81,14 @@ const RegisterForm = () => {
         ]}
       >
         <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        name="name"
+        label="Name"
+        rules={[{ required: true, message: "Введите имя!" }]}
+      >
+        <Input />
       </Form.Item>
 
       <Form.Item>
