@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { login } from "../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
-const LoginForm = () => {
+const LoginForm = ({ handleCancel }) => {
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -18,6 +21,8 @@ const LoginForm = () => {
 
       if (response.ok) {
         message.success("Вход выполнен успешно!");
+        dispatch(login(data));
+        handleCancel();
       } else {
         message.error(data.message || "Ошибка авторизации");
       }
@@ -36,10 +41,10 @@ const LoginForm = () => {
       style={{ maxWidth: 300 }}
     >
       <Form.Item
-        name="username"
+        name="email"
         rules={[{ required: true, message: "Введите имя пользователя!" }]}
       >
-        <Input prefix={<UserOutlined />} placeholder="Имя пользователя" />
+        <Input prefix={<UserOutlined />} placeholder="email email" />
       </Form.Item>
 
       <Form.Item

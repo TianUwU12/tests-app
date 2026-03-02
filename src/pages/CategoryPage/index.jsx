@@ -6,7 +6,7 @@ import { Modal } from "antd";
 import { shuffleArray } from "../../utils";
 import { useSelector } from "react-redux";
 
-const getCategory = (id) => {
+const getCategory = (id, categoryQuestions) => {
   if (id === "custom") return customTest;
   return categoryQuestions.find((category) => category.id === id);
 };
@@ -18,9 +18,9 @@ export default function CategoryPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const customTest = useSelector((state) => state.customTest);
-
+  const categoryQuestions = useSelector((state) => state.categories);
   const { grade, percent } = results;
-  const category = getCategory(id);
+  const category = getCategory(id, categoryQuestions);
 
   console.log(customTest);
   console.log(category);
@@ -147,6 +147,9 @@ export default function CategoryPage() {
       countEmptyAnswers,
     );
     showModal();
+
+    //fetch mehod post
+    //category, score, totalQuestions
   }
 
   const customLog = () => {

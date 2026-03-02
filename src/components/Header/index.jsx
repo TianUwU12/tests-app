@@ -7,14 +7,16 @@ import { MenuOutlined } from "@ant-design/icons";
 
 import styles from "./Header.module.css";
 import "./HeaderCommon.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RegAuthSwitcher from "../RegAuthSwitcher";
+import { logout } from "../../store/slices/authSlice";
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { user } = useSelector((state) => state.auth) || {};
+  const dispatch = useDispatch();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -58,7 +60,12 @@ const Header = () => {
           items={menuItems}
           className={styles.navbar}
         />
-        <button onClick={showModal}>Login</button>
+        {user && <span>Привет {user.name}</span>}
+        {user ? (
+          <button onClick={() => dispatch(logout())}>logout</button>
+        ) : (
+          <button onClick={showModal}>Login</button>
+        )}
       </div>
       <div className={styles["menu-mobile"]}>
         <MenuOutlined onClick={showDrawer} />
@@ -85,7 +92,7 @@ const Header = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <RegAuthSwitcher />
+        <RegAuthSwitcher handleCancel={handleCancel} />
       </Modal>
     </>
   );
