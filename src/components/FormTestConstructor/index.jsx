@@ -33,12 +33,16 @@ export default function FormTestConstructor() {
 
   function getRandomItems(key, n) {
     const category = categories.find((cat) => cat.id === key);
-
+    console.log(categories);
+    
     return [...category.tasks].sort(() => Math.random() - 0.5).slice(0, n);
   }
 
   function startTest() {
     const categories = Object.entries(formData);
+    console.log(categories);
+    console.log(formData);
+    
     const questions = categories
       .map(([key, value]) => getRandomItems(key, value))
       .flat();

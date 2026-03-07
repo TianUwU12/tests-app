@@ -6,11 +6,6 @@ import { Modal } from "antd";
 import { shuffleArray } from "../../utils";
 import { useSelector } from "react-redux";
 
-const getCategory = (id, categoryQuestions) => {
-  if (id === "custom") return customTest;
-  return categoryQuestions.find((category) => category.id === id);
-};
-
 export default function CategoryPage() {
   const [answers, setAnswers] = useState([]);
   const [results, setResults] = useState({ grade: null, percent: null });
@@ -20,36 +15,30 @@ export default function CategoryPage() {
   const customTest = useSelector((state) => state.customTest);
   const categoryQuestions = useSelector((state) => state.categories);
   const { grade, percent } = results;
-  const category = getCategory(id, categoryQuestions);
+  const tasks =
+    categoryQuestions.find((category) => category.id === id)?.tasks ||
+    customTest;
+  const categoryTitle = categoryQuestions.find(
+    (category) => category.id === id,
+  )?.title;
 
+  // if (!category) {
+  //   return <p>Категория не найдена</p>;
+  // }
   console.log(customTest);
-  console.log(category);
-
-  if (!category) {
-    return <p>Категория не найдена</p>;
-  }
-
-  if (id === "custom" && category.tasks.length === 0) {
-    console.log(customTest);
-    category.tasks = shuffleArray(customTest);
-  }
-
-  useEffect(() => {
-    console.log("hello");
-
-    return () => (category.tasks = []);
-  }, []);
 
   useEffect(() => {
     console.log("tasks");
-    if (id === "custom" && category.tasks.length === 0) {
+    if (id === "custom" && tasks.length === 0) {
       navigate("/");
     }
-  }, [category.tasks]);
+  }, [tasks]);
 
-  const correctAnswers = category.tasks.map(
-    (question) => question.correctAnswer,
-  );
+  console.log(tasks);
+  console.log(categoryQuestions);
+  console.log(id);
+
+  const correctAnswers = tasks.map((question) => question.correctAnswer);
 
   const [countAnswers, setCountAnswers] = useState({
     countCorrectAnswers: null,
@@ -147,7 +136,9 @@ export default function CategoryPage() {
       countEmptyAnswers,
     );
     showModal();
+  }
 
+  function submitResult() {
     //fetch mehod post
     //category, score, totalQuestions
   }
@@ -158,10 +149,10 @@ export default function CategoryPage() {
 
   return (
     <div>
-      <h3>{category.title}</h3>
+      <h3>{categoryTitle}</h3>
       {/* <h4>Вопросов - {category.tasks}</h4> */}
 
-      {category.tasks.map((question, index) => (
+      {tasks.map((question, index) => (
         <Question
           key={index}
           {...question}
