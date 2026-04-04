@@ -19,8 +19,17 @@ const favouriteSlice = createSlice({
       //splice + index
       // state.push(payload)
     },
+    toggleTheory: (state, { payload }) => {
+      const existTheoryIndex = state.findIndex((theory)=>theory.id === payload.id)
+      if (existTheoryIndex!=-1){
+        state.splice(existTheoryIndex,1)
+      }
+      else{
+        state.push(payload);
+      }
+    }
   },
 });
 
-export const { addTheory } = favouriteSlice.actions;
+export const { addTheory,toggleTheory } = favouriteSlice.actions;
 export default favouriteSlice.reducer;

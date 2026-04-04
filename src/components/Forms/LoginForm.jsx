@@ -23,6 +23,7 @@ const LoginForm = ({ handleCancel }) => {
         message.success("Вход выполнен успешно!");
         dispatch(login(data));
         handleCancel();
+        
       } else {
         message.error(data.message || "Ошибка авторизации");
       }

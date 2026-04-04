@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { categoryQuestions } from "../../../data/questions";
 import styles from "./FormTestConstructorItem.module.css";
 
 export default function FormTestConstructorItem({

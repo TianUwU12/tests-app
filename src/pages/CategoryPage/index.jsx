@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { categoryQuestions, customTest } from "../../data/questions";
 import Question from "../../components/Question";
 import { Modal } from "antd";
 import { shuffleArray } from "../../utils";
@@ -14,6 +13,8 @@ export default function CategoryPage() {
   const navigate = useNavigate();
   const customTest = useSelector((state) => state.customTest);
   const categoryQuestions = useSelector((state) => state.categories);
+  const user = useSelector((state) => state.auth);
+
   const { grade, percent } = results;
   const tasks =
     categoryQuestions.find((category) => category.id === id)?.tasks ||
@@ -21,6 +22,7 @@ export default function CategoryPage() {
   const categoryTitle = categoryQuestions.find(
     (category) => category.id === id,
   )?.title;
+  console.log(categoryTitle);
 
   // if (!category) {
   //   return <p>Категория не найдена</p>;
@@ -136,11 +138,26 @@ export default function CategoryPage() {
       countEmptyAnswers,
     );
     showModal();
+    if (user){
+    submitResult(categoryTitle, countCorrectAnswers, correctAnswers.length);
+    }
   }
 
-  function submitResult() {
+  async function submitResult(category, score, totalQuestions) {
     //fetch mehod post
     //category, score, totalQuestions
+    const data = { category, score, totalQuestions };
+    console.log(data);
+
+    const response = await fetch("http://localhost:3000/api/tests/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(response);
   }
 
   const customLog = () => {

@@ -4,7 +4,7 @@ import RegisterForm from "../Forms/RegisterForm";
 import LoginForm from "../Forms/LoginForm";
 
 export default function RegAuthSwitcher({ handleCancel }) {
-  const [activeTab, setActiveTab] = useState("reg");
+  const [activeTab, setActiveTab] = useState("auth");
 
   return (
     <div>

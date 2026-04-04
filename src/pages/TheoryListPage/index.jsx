@@ -1,15 +1,16 @@
 import React from "react";
-import { categoryQuestions } from "../../data/questions";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function TheoryListPage() {
+  const categories = useSelector((state)=>state.categories);
   return (
     <>
       <h1>Теория ОГЭ</h1>
       <div className="d-flex flex-direction-column" >
-        {categoryQuestions.map(({id,title}) => (
+        {categories.map(({id,title}) => (
           <Link key={id} to={`/theory/${id}`}>
-            {title}
+            {title} 
           </Link>
         ))}
       </div>

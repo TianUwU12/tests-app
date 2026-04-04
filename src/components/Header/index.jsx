@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <>
       <div className={styles["menu-desktop"]}>
-        <Link to={"/"}>
+        <Link to={"/"} className={styles.logoLink}>
           <img alt="logo" src="./images/examPic.png" className={styles.logo} />
         </Link>
         <Menu
