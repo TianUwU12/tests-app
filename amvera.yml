@@ -9,10 +9,10 @@ build:
   artifacts:
     "*": /
 run:
-  scriptName: index.js
+  scriptName: ""
   scriptArguments: null
   nodeArguments: null
-  command: npm run start
+  command: npm run dev
   persistenceMount: /data
   containerPort: "80"
   servicePort: "80"
