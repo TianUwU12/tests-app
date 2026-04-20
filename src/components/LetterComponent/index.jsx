@@ -3,11 +3,6 @@ import React, { useState } from "react";
 export default function LetterComponent({ letter, hasWinner }) {
   const [isShown, setIsShown] = useState(false);
   function showLetter() {
-    // if (isShown) {
-    //   setIsShown(false);
-    // } else {
-    //   setIsShown(true);
-    // }
     setIsShown(!isShown);
   }
   return (

@@ -8,7 +8,6 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       const { confirm, ...registerData } = values;
-      // (!!!!)
       const response = await fetch(
         "https://test-backend-adrunami.amvera.io/api/reg",
         {

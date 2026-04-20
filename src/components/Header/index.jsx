@@ -88,11 +88,12 @@ const Header = () => {
         <button>Close menu</button>
       </div>
       <Modal
-        title="Basic Modal"
+        title="Регистрация и авторизация"
         closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <RegAuthSwitcher handleCancel={handleCancel} />
       </Modal>

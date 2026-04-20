@@ -47,9 +47,7 @@ export default function FormTestConstructor() {
   if (categories.length === 0) {
     return <Spin description="Loading"></Spin>;
   }
-  // if (isError){
-  //   return <ErrorComponent/>;
-  // }
+
   return (
     <div>
       {categories.map(({ id, title, tasks }) => (

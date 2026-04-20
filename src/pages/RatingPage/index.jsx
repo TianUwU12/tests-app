@@ -45,8 +45,6 @@ export default function RatingPage() {
   };
 
   async function deleteHistory() {
-    //fetch mehod post
-    //category, score, totalQuestions
     try {
       const response = await fetch(
         "https://test-backend-adrunami.amvera.io/api/tests/clear",

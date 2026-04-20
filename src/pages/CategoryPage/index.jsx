@@ -129,8 +129,6 @@ export default function CategoryPage() {
   }
 
   async function submitResult(category, score, totalQuestions) {
-    //fetch mehod post
-    //category, score, totalQuestions
     const data = { category, score, totalQuestions };
 
     const response = await fetch(
@@ -188,8 +186,3 @@ export default function CategoryPage() {
     </div>
   );
 }
-
-// Если процент менее 50% то оценка -2  и для други[ оценок так ;е]
-// Блокировать инпуты после проверки ответов
-//показывать пользователю неправильные ответы после результатов
-// Сделать футер  + стили тестов (опционально)
