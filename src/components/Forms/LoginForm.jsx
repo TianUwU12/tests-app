@@ -11,7 +11,7 @@ const LoginForm = ({ handleCancel }) => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/auth", {
+      const response = await fetch("https://test-backend-adrunami.amvera.io/api/auyh", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),

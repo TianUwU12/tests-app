@@ -9,11 +9,14 @@ const RegisterForm = () => {
     try {
       const { confirm, ...registerData } = values;
       // (!!!!)
-      const response = await fetch("http://localhost:3000/api/reg", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(registerData),
-      });
+      const response = await fetch(
+        "https://test-backend-adrunami.amvera.io/api/reg",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(registerData),
+        },
+      );
 
       if (response.ok) {
         message.success("Регистрация прошла успешно!");

@@ -133,14 +133,17 @@ export default function CategoryPage() {
     //category, score, totalQuestions
     const data = { category, score, totalQuestions };
 
-    const response = await fetch("http://localhost:3000/api/tests/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+    const response = await fetch(
+      "https://test-backend-adrunami.amvera.io/api/tests/submit",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
   }
 
   return (

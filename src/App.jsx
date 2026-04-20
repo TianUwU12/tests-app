@@ -23,7 +23,7 @@ function App() {
 
   async function getCategories() {
     try {
-      const response = await fetch("http://localhost:3000/api/tests/");
+      const response = await fetch("https://test-backend-adrunami.amvera.io/api/tests");
       const data = await response.json();
       dispatch(addCategories(data));
     } catch (error) {
@@ -34,7 +34,7 @@ function App() {
   async function checkToken() {
     try {
 
-      const response = await fetch("http://localhost:3000/api/token", {
+      const response = await fetch("https://test-backend-adrunami.amvera.io/api/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export default function RatingPage() {
     const getResults = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/tests/history",
+          "https://test-backend-adrunami.amvera.io/api/tests/history",
           {
             method: "GET",
             headers: {
@@ -48,13 +48,16 @@ export default function RatingPage() {
     //fetch mehod post
     //category, score, totalQuestions
     try {
-      const response = await fetch("http://localhost:3000/api/tests/clear", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+      const response = await fetch(
+        "https://test-backend-adrunami.amvera.io/api/tests/clear",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
         },
-      });
+      );
       setResults([]);
       messageApi.success("Click on Yes");
     } catch {
