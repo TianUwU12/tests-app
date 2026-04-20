@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+///!!!!!!!
 const counterSlice = createSlice({
   name: "counter",
   initialState: { value: 0 }, //х
@@ -12,8 +12,6 @@ const counterSlice = createSlice({
       state.value -= 1;
     },
     addNum: (state, { payload }) => {
-      console.log(payload);
-
       state.value += payload;
     },
   },

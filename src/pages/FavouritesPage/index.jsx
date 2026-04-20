@@ -6,7 +6,6 @@ export default function FavouritesPage() {
   const favourites = useSelector((state) => state.favouriteSlice);
   const navigate = useNavigate();
 
-  console.log(favourites);
 
   if (!favourites.length) {
     return (

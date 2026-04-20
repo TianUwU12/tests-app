@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Question from "../../components/Question";
 import { Modal } from "antd";
-import { shuffleArray } from "../../utils";
 import { useSelector } from "react-redux";
 
 export default function CategoryPage() {
@@ -22,23 +21,12 @@ export default function CategoryPage() {
   const categoryTitle = categoryQuestions.find(
     (category) => category.id === id,
   )?.title;
-  console.log(categoryTitle);
-
-  // if (!category) {
-  //   return <p>Категория не найдена</p>;
-  // }
-  console.log(customTest);
 
   useEffect(() => {
-    console.log("tasks");
     if (id === "custom" && tasks.length === 0) {
       navigate("/");
     }
   }, [tasks]);
-
-  console.log(tasks);
-  console.log(categoryQuestions);
-  console.log(id);
 
   const correctAnswers = tasks.map((question) => question.correctAnswer);
 
@@ -69,7 +57,6 @@ export default function CategoryPage() {
   function setAnswerByIndex(index, userAnswer) {
     const tempAnswers = [...answers];
     tempAnswers[index] = userAnswer;
-    console.log(tempAnswers);
 
     setAnswers(tempAnswers);
   }
@@ -114,12 +101,10 @@ export default function CategoryPage() {
       } else {
         countEmptyAnswers++;
       }
-      console.log(`${answer}: ${isCorrect ? "True" : "False"}`);
     });
 
     const percentage =
       (correctAnswers.length / 100) * countCorrectAnswers * 100;
-    console.log(`Процент правильных ответов: ${percentage.toFixed(2)}%`);
 
     let grade;
     if (percentage < 50) {
@@ -138,8 +123,8 @@ export default function CategoryPage() {
       countEmptyAnswers,
     );
     showModal();
-    if (user){
-    submitResult(categoryTitle, countCorrectAnswers, correctAnswers.length);
+    if (user) {
+      submitResult(categoryTitle, countCorrectAnswers, correctAnswers.length);
     }
   }
 
@@ -147,7 +132,6 @@ export default function CategoryPage() {
     //fetch mehod post
     //category, score, totalQuestions
     const data = { category, score, totalQuestions };
-    console.log(data);
 
     const response = await fetch("http://localhost:3000/api/tests/submit", {
       method: "POST",
@@ -157,12 +141,7 @@ export default function CategoryPage() {
       },
       body: JSON.stringify(data),
     });
-    console.log(response);
   }
-
-  const customLog = () => {
-    console.log(answers);
-  };
 
   return (
     <div>

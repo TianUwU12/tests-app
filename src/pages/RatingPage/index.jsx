@@ -1,5 +1,5 @@
 import { Button, message, Popconfirm } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function RatingPage() {
@@ -20,18 +20,16 @@ export default function RatingPage() {
             },
           },
         );
-        
-        if (response.status != 200){
-          throw new Error('error');
+
+        if (response.status != 200) {
+          throw new Error("error");
         }
-        
+
         const data = await response.json();
-        console.log(data);
-        
+
         setResults(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        console.log("!!!!");
       }
     };
 
@@ -39,12 +37,10 @@ export default function RatingPage() {
   }, []);
 
   const confirm = (e) => {
-    console.log(e);
     deleteHistory();
   };
 
   const cancel = (e) => {
-    console.log(e);
     messageApi.error("Click on No");
   };
 
@@ -59,10 +55,9 @@ export default function RatingPage() {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      console.log(response);
       setResults([]);
       messageApi.success("Click on Yes");
-    } catch (error) {
+    } catch {
       messageApi.error("Error while clearing history");
     }
   }

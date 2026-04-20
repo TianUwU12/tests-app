@@ -9,7 +9,6 @@ export default function TheoryPage() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
   const favourites = useSelector((state) => state.favouriteSlice);
-  console.log(favourites);
 
   const existTheory = favourites.find((theory) => theory.id === id);
 
@@ -21,7 +20,6 @@ export default function TheoryPage() {
 
   function handleToggleTheory() {
     const { id, title, theory } = category;
-    //dispatch(addTheory({ id, title, theory }));
     dispatch(toggleTheory({ id, title, theory }));
   }
 

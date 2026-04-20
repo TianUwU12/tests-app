@@ -11,49 +11,43 @@ import ProfilePage from "./pages/ProfilePage";
 import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import CustomTestPage from "./pages/CustomTestPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategories } from "./store/slices/categoriesSlice";
+import { login, logout } from "./store/slices/authSlice";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
+
   async function getCategories() {
     try {
       const response = await fetch("http://localhost:3000/api/tests/");
       const data = await response.json();
-      console.log(data);
       dispatch(addCategories(data));
     } catch (error) {
-      console.log(error);
+      console.log("!!!!");
     }
   }
 
   async function checkToken() {
     try {
-      console.log(user);
-      
-      const response = await fetch("http://localhost:3000/api/token", {
-      
-      
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      
-    });
-    if (!response.ok){
-      throw new Error('error');
-    }
-    const data = await response.json();
 
-    dispatch(login(data));
-    console.log(response.json());
-    } catch (error) {
-      console.log(error);
+      const response = await fetch("http://localhost:3000/api/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("error");
+      }
+      const data = await response.json();
+
+      dispatch(login(data));
+    } catch {
       dispatch(logout());
     }
   }
@@ -65,7 +59,6 @@ function App() {
 
   return (
     <div>
-
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -76,7 +69,6 @@ function App() {
         <Route path="/rating" element={<RatingPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/catalog/:id" element={<CategoryPage />} />
-        <Route path="/custom-test" element={<CustomTestPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

@@ -32,7 +32,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    console.log(e);
     setCurrent(e.key);
     navigate(e.key);
     // setDrawerVisible(false);

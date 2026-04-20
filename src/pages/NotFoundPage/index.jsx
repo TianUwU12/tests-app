@@ -5,7 +5,6 @@ export default function NotFoundPage() {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    console.log("hello");
 
     setInterval(() => {
       setSeconds((prev) => prev - 1);
@@ -18,7 +17,7 @@ export default function NotFoundPage() {
         const { id, value } = data;
         setJoke({ id, value });
       } catch (error) {
-        console.log(error);
+        console.log('!!!!');
       }
     };
 

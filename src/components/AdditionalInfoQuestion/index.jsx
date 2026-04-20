@@ -10,7 +10,7 @@ export default function AdditionalInfoQuestion({ additionalInfo }) {
     }));
     const data = additionalInfo.data.reduce(
       (acc, item) => ({ ...acc, [item.key]: item.value }),
-      {}
+      {},
     );
 
     return <Table columns={columns} dataSource={[data]} pagination={false} />;
@@ -18,6 +18,3 @@ export default function AdditionalInfoQuestion({ additionalInfo }) {
 
   return <></>;
 }
-
-const arr = [1, 2, 3];
-const sum = arr.reduce((acc, item) => acc + item, 0);

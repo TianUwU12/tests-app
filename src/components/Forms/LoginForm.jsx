@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { login } from "../../store/slices/authSlice";
@@ -23,11 +23,10 @@ const LoginForm = ({ handleCancel }) => {
         message.success("Вход выполнен успешно!");
         dispatch(login(data));
         handleCancel();
-        
       } else {
         message.error(data.message || "Ошибка авторизации");
       }
-    } catch (error) {
+    } catch {
       message.error("Ошибка сети или сервера");
     } finally {
       setLoading(false);

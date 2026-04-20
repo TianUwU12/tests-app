@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 
 const RegisterForm = () => {
@@ -8,7 +8,7 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       const { confirm, ...registerData } = values;
-
+      // (!!!!)
       const response = await fetch("http://localhost:3000/api/reg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -21,7 +21,7 @@ const RegisterForm = () => {
         const errorData = await response.json();
         message.error(errorData.message, "Ошибка при регистрации");
       }
-    } catch (error) {
+    } catch {
       message.error("Не удалось связаться с сервером");
     } finally {
       setLoading(false);

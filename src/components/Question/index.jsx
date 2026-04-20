@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FinalUserAnswer from "../FinalUserAnswer";
 import styles from "./Question.module.css";
 import AdditionalInfoQuestion from "../AdditionalInfoQuestion";
@@ -14,7 +14,6 @@ export default function Question({
   const [userAnswer, setUserAnswer] = useState("");
 
   function changeUserAnswer(event) {
-    console.log(event);
     const value = event.target.value;
     setUserAnswer(value);
     setAnswerByIndex(index, value);
@@ -36,7 +35,7 @@ export default function Question({
             <strong key={i}>{item.slice(2, -2)}</strong>
           ) : (
             item
-          )
+          ),
         )}
       </p>
       {additionalInfo && (
@@ -48,7 +47,6 @@ export default function Question({
         onChange={changeUserAnswer}
         onKeyDown={(e) => {
           if (e.code === "Space") {
-            console.log(1);
 
             e.preventDefault();
           }
@@ -63,5 +61,3 @@ export default function Question({
     </div>
   );
 }
-
-

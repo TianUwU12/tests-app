@@ -9,7 +9,6 @@ export default function FormTestConstructorItem({
   changeFormData,
 }) {
   const [count, setCount] = useState(0);
-  console.log(title);
 
   function chCount(a) {
     setCount(count + a);
