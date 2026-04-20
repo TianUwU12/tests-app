@@ -34,7 +34,6 @@ const Header = () => {
   const handleClick = (e) => {
     setCurrent(e.key);
     navigate(e.key);
-    // setDrawerVisible(false);
     closeDrawer();
   };
 
@@ -46,6 +45,10 @@ const Header = () => {
     setDrawerVisible(false);
   };
 
+  const menuElements = user
+    ? menuItems
+    : menuItems.filter((elem) => elem.key !== "rating");
+
   return (
     <>
       <div className={styles["menu-desktop"]}>
@@ -56,7 +59,7 @@ const Header = () => {
           onClick={handleClick}
           selectedKeys={[current]}
           mode="horizontal"
-          items={menuItems}
+          items={menuElements}
           className={styles.navbar}
         />
         {user && <span>Привет {user.name}</span>}
