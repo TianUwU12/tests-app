@@ -11,11 +11,14 @@ const LoginForm = ({ handleCancel }) => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const response = await fetch("https://test-backend-adrunami.amvera.io/api/auyh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        "https://test-backend-adrunami.amvera.io/api/auth",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        },
+      );
 
       const data = await response.json();
 
