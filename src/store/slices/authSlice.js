@@ -10,6 +10,7 @@ const authSlice = createSlice({
       return payload;
     },
     logout: () => {
+      localStorage.removeItem("user");
       return null;
     },
   },

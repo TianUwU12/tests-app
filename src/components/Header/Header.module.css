@@ -1,7 +1,7 @@
-
 .menu-desktop {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .menu-mobile {
@@ -19,23 +19,20 @@
     padding: 0 16px;
     font-size: 24px;
     cursor: pointer;
-    
   }
 }
 
-.logo{
+.logo {
   max-width: 32px;
   object-fit: contain;
-
 }
 
-.navbar{
+.navbar {
   flex: 1;
   justify-content: space-around;
 }
 
-.logoLink{
+.logoLink {
   display: flex;
   align-items: center;
 }
-
